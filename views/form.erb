@@ -1,0 +1,50 @@
+<html>
+<script type="text/javascript" src="https://js.stripe.com/v2/stripe-debug.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.0/featherlight.min.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.0/featherlight.min.css" >
+<script type="text/javascript" src="js/3d-secure-demo.js"></script>
+
+<script type="text/javascript">
+  Stripe.setPublishableKey('PUBLISHABLE_KEY');
+</script>
+
+<body>
+<form action="/your-charge-code" method="POST" id="payment-form">
+  <span class="payment-errors"><%= flash[:error] %></span>  
+  <div class="form-row">
+    <label>
+      <span>Card Number</span>
+      <input type="text" size="20" class="card-number" value="4000000000003063">
+    </label>
+  </div>
+
+  <div class="form-row">
+    <label>
+      <span>Expiration (MM/YY)</span>
+      <input type="text" size="2" class="card-expiry-month" value=01>
+    </label>
+    <span> / </span>
+    <input type="text" size="2" class="card-expiry-year" value=20>
+  </div>
+
+  <div class="form-row">
+    <label>
+      <span>CVC</span>
+      <input type="text" size="4" class="card-cvc" value="123">
+    </label>
+  </div>
+
+  <div class="form-row">
+    <label>
+      <span>Billing Postal Code</span>
+      <input type="text" size="6" class="address_zip" value="90201">
+    </label>
+  </div>
+
+  <input type="hidden" class="amount" value=<%=@amount%>>
+  <input type="hidden" class="currency" value="<%=@currency%>">
+  <input type="hidden" class="create3DSecureSource" value="<%=@create3DSecureSource%>">
+  <input type="submit" class="submit" value="Submit Payment">
+</form>
+</body>
